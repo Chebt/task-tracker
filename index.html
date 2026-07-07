@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>todo</title>
+</head>
+<body>
+<button id ="btn"> Load a todo </button>
+<p id = "Fetched-data"></p>
+<script>
+    document.getElementById('btn').addEventListener('click', () => {
+        fetch('https://jsonplaceholder.typicde.com/todos/1')
+            .then(response => response.json()) // Receives raw data and converts into JSON
+            .then(data => {                    // Receives actual data
+                document.getElementById('Fetched-data').textContent = data.title;
+            })
+            .catch(error =>{
+                console.error('Error fetching data: ',error);
+                document.getElementById('Fetched-data').textContent = 'Failed to load data';
+            }); // Catches any network errors
+    });
+
+</script>
+</body>
+</html>
